@@ -5,3 +5,8 @@ node_modules/
 # output of running the kit on itself
 security-audit/
 *.skill
+
+# never commit real secrets (practice what we preach)
+.env
+.env.*
+!.env.example
