@@ -27,7 +27,7 @@ git clone https://github.com/sobinta/app-security-kit ~/.claude/skills/app-secur
 ```
 **Per project** (shared with your team through the repo): clone/copy it to `.claude/skills/app-security-kit/` inside the project.
 
-**Claude app (claude.ai / desktop):** download `app-security-kit.skill` from the [latest release](https://github.com/sobinta/app-security-kit/releases/latest) and add it as a custom skill in the app's skills settings.
+**Claude app (claude.ai / desktop):** download `app-security-kit.skill` from the [latest release](https://github.com/sobinta/app-security-kit/releases/latest) and add it as a custom skill in the app's skills settings. No release yet? Build the file from a clone: `git archive --format=zip --prefix=app-security-kit/ -o app-security-kit.skill HEAD`.
 
 Requirements for the bundled scripts: Python 3.8+ and git (no pip installs). Node is only needed for your own JS projects.
 
@@ -166,7 +166,7 @@ git clone https://github.com/sobinta/app-security-kit ~/.claude/skills/app-secur
 
 <div dir="rtl">
 
-برای یک پروژه‌ی خاص: داخل پوشه‌ی `.claude/skills/app-security-kit/` همان پروژه قرارش بده. برای **اپ Claude**: فایل `app-security-kit.skill` را از [آخرین نسخه (Releases)](https://github.com/sobinta/app-security-kit/releases/latest) دانلود کن و به‌عنوان اسکیل سفارشی در تنظیمات اسکیل‌های اپ اضافه کن. اسکریپت‌ها فقط به Python 3.8 به بالا و git نیاز دارند.
+برای یک پروژه‌ی خاص: داخل پوشه‌ی `.claude/skills/app-security-kit/` همان پروژه قرارش بده. برای **اپ Claude**: فایل `app-security-kit.skill` را از [آخرین نسخه (Releases)](https://github.com/sobinta/app-security-kit/releases/latest) دانلود کن و به‌عنوان اسکیل سفارشی در تنظیمات اسکیل‌های اپ اضافه کن. اگر هنوز نسخه‌ای منتشر نشده، داخل ریپوی کلون‌شده این دستور فایل را می‌سازد: `git archive --format=zip --prefix=app-security-kit/ -o app-security-kit.skill HEAD` اسکریپت‌ها فقط به Python 3.8 به بالا و git نیاز دارند.
 
 ### نمونه‌ی استفاده
 - «کیت امنیتی رو روی این پروژه اجرا کن، همه رو درست کن، تست کن و گزارش کوتاه بده.»

@@ -138,7 +138,8 @@ def main(argv=None) -> int:
             loc = f"`{f['file']}:{f['line']}`" if f.get("file") and f.get("line") else (f"`{f['file']}`" if f.get("file") else "project-wide")
             L.append(f"- **{f['id']}** [{f['severity']}/{f['confidence']}] {f['title']} — {loc}")
             if f.get("evidence"):
-                L.append(f"  - evidence: `{f['evidence'][:150].replace('`', "'")}`")
+                ev = f["evidence"][:150].replace("`", "'")
+                L.append(f"  - evidence: `{ev}`")
         if len(items) > 12:
             L.append(f"- … {len(items) - 12} more in findings.json")
         if sid in MANUAL_STEPS:
