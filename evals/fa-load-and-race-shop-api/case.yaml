@@ -1,0 +1,10 @@
+schema_version: "1.1"
+name: fa-load-and-race-shop-api
+expected_outcome: |
+  The shop API is started locally and load-tested with hundreds of concurrent users (smoke → load → spike).
+  The report gives before/after numbers (req/s, p95/p99, error rate), identifies the event-loop-blocking
+  work in /api/products (pbkdf2Sync per product, readFileSync + sort per request) and fixes it (cache/precompute),
+  demonstrates and fixes the WELCOME50 double-redemption race (and the stock oversell race on /api/orders),
+  bounds the unbounded requestLog, keeps the API working, and gives a capacity estimate — in Persian.
+context:
+  scaffold_script: place-files.sh

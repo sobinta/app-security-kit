@@ -1,0 +1,48 @@
+# --- secrets & env (keep .env.example with placeholders only) ---
+.env
+.env.*
+!.env.example
+!.env.sample
+*.pem
+*.key
+*.p12
+*.pfx
+*.ppk
+*.keystore
+*.jks
+id_rsa*
+id_ed25519*
+*credentials*.json
+*service-account*.json
+*serviceAccount*.json
+*firebase-adminsdk*.json
+.npmrc
+.pypirc
+.netrc
+.vscode/sftp.json
+*.tfstate
+*.tfstate.*
+*.tfvars
+# --- data, dumps, backups ---
+*.sql
+*.sql.gz
+*.dump
+*.sqlite
+*.sqlite3
+*.db
+*.bak
+*.backup
+*.old
+*.orig
+backup*/
+backups/
+*backup*.zip
+*backup*.tar.gz
+# --- logs & local artifacts ---
+*.log
+logs/
+npm-debug.log*
+.DS_Store
+coverage/
+# --- security scan output (lists weaknesses; commit only the final report if you want) ---
+security-audit/scan/

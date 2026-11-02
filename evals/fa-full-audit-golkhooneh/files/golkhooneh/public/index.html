@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>گلخونه — فروشگاه گیاه</title>
+  <style>
+    body { font-family: Vazirmatn, Tahoma, sans-serif; background:#f4f8f1; color:#1d3b23; margin:0; }
+    header { background:#2e7d32; color:#fff; padding:12px 20px; display:flex; justify-content:space-between; }
+    main { max-width:900px; margin:20px auto; padding:0 16px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; }
+    .card { background:#fff; border-radius:12px; padding:12px; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+    .comment { background:#fff; margin:8px 0; padding:8px 12px; border-radius:8px; }
+    button { background:#2e7d32; color:#fff; border:0; border-radius:8px; padding:6px 12px; cursor:pointer; }
+  </style>
+</head>
+<body>
+  <header>
+    <strong>🌿 گلخونه</strong>
+    <span id="weather">…</span>
+    <span><a href="/login" style="color:#fff">ورود</a> · <a href="/admin" style="color:#fff">مدیریت</a></span>
+  </header>
+  <main>
+    <form action="/search" method="get"><input name="q" placeholder="جستجوی گیاه"><button>جستجو</button></form>
+    <h2>محصولات</h2>
+    <div id="products" class="grid"></div>
+    <h2>نظرات مشتری‌ها</h2>
+    <form id="commentForm"><textarea name="body" rows="2" cols="50" placeholder="نظرت رو بنویس"></textarea><br><button>ارسال</button></form>
+    <div id="comments"></div>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

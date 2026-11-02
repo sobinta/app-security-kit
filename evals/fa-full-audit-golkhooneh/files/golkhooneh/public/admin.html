@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="fa" dir="rtl"><head><meta charset="utf-8"><title>مدیریت — گلخونه</title></head>
+<body style="font-family:Tahoma,sans-serif;max-width:700px;margin:40px auto">
+  <h2>پنل مدیریت</h2>
+  <table id="users" border="1" cellpadding="6"></table>
+  <script>
+    fetch('/api/admin/users', { credentials: 'include' }).then(r => r.json()).then(users => {
+      document.getElementById('users').innerHTML = '<tr><th>id</th><th>email</th><th>name</th><th>role</th><th></th></tr>' +
+        users.map(u => `<tr><td>${u.id}</td><td>${u.email}</td><td>${u.name}</td><td>${u.role}</td>
+          <td><button onclick="del(${u.id})">حذف</button></td></tr>`).join('');
+    });
+    function del(id) { fetch('/api/admin/users/' + id, { method: 'DELETE', credentials: 'include' }).then(() => location.reload()); }
+  </script>
+</body></html>

@@ -1,0 +1,54 @@
+# Copy to .github/workflows/security.yml
+# Secret scanning on every push/PR, dependency audits, and dependency review on PRs.
+name: security
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  schedule:
+    - cron: "17 5 * * 1"   # weekly: catches new advisories for unchanged code
+permissions:
+  contents: read
+jobs:
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0          # full history so old commits are scanned too
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}  # free key, required only for organization-owned repos
+
+  dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: npm audit (production deps)
+        if: hashFiles('package-lock.json') != ''
+        run: npm audit --omit=dev --audit-level=high
+      - name: pip-audit
+        if: hashFiles('requirements.txt') != ''
+        run: pipx run pip-audit -r requirements.txt
+      - name: composer audit
+        if: hashFiles('composer.lock') != ''
+        run: composer audit --no-interaction
+
+  dependency-review:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: high
+
+  # Optional gate with this kit's scanners (copy the skill's scripts/ folder to tools/security/):
+  # kit-scan:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+  #     - run: python3 tools/security/run_all.py . --offline --fail-on high

@@ -1,0 +1,14 @@
+schema_version: "1.1"
+name: fa-full-audit-golkhooneh
+expected_outcome: |
+  The deliberately vulnerable Express + SQLite plant shop is audited and hardened end to end:
+  forgeable uid cookie replaced by real sessions, passwords hashed (existing users can still log in),
+  SQL injection and the client-SQL endpoint removed, XSS escaped, admin routes role-checked, IDOR and
+  mass assignment closed, prices computed on the server, rate limiting, strict CORS, security headers,
+  secure cookies, CSRF protection, single-use expiring reset tokens, restricted uploads, debug output off,
+  exposed backup.zip and /api/config secrets removed, the client-side API key removed, path traversal fixed,
+  vulnerable/unused packages handled. Security tests are written and run. A short Persian report lists
+  what was fixed, what is still risky, and tells the owner to rotate the Stripe key found in git history
+  and the exposed weather key (without claiming they were rotated). The app still runs.
+context:
+  scaffold_script: place-files.sh

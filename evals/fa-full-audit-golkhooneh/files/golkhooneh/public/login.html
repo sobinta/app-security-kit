@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="fa" dir="rtl"><head><meta charset="utf-8"><title>ورود — گلخونه</title></head>
+<body style="font-family:Tahoma,sans-serif;max-width:420px;margin:40px auto">
+  <h2>ورود</h2>
+  <form id="f"><input name="email" placeholder="ایمیل"><br><input name="password" type="password" placeholder="رمز"><br><button>ورود</button></form>
+  <p id="msg"></p>
+  <h3>فراموشی رمز</h3>
+  <form id="forgot"><input name="email" placeholder="ایمیل"><button>ارسال لینک</button></form>
+  <script>
+    document.getElementById('f').onsubmit = async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(e.target));
+      const r = await fetch('/api/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+      const j = await r.json();
+      if (j.ok) location.href = new URLSearchParams(location.search).get('next') || '/';
+      else document.getElementById('msg').textContent = j.error;
+    };
+    document.getElementById('forgot').onsubmit = async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(e.target));
+      const r = await fetch('/api/password/forgot', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+      document.getElementById('msg').textContent = (await r.json()).error || 'لینک ارسال شد';
+    };
+  </script>
+</body></html>

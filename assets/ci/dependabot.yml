@@ -1,0 +1,25 @@
+# Copy to .github/dependabot.yml — weekly update PRs (security updates also need
+# "Dependabot security updates" enabled in the repo settings).
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    groups:
+      minor-and-patch:
+        update-types: ["minor", "patch"]
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+  # - package-ecosystem: "pip"        # Python
+  #   directory: "/"
+  #   schedule: { interval: "weekly" }
+  # - package-ecosystem: "composer"   # PHP
+  #   directory: "/"
+  #   schedule: { interval: "weekly" }
+  # - package-ecosystem: "docker"
+  #   directory: "/"
+  #   schedule: { interval: "weekly" }

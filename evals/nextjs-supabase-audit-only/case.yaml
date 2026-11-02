@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: nextjs-supabase-audit-only
+expected_outcome: |
+  Audit-only mode: no project file is modified. A prioritized report flags, with file references and fixes:
+  the service_role key exposed through NEXT_PUBLIC_ and used in the 'use client' admin page, missing RLS on
+  cases/documents/payments plus the profiles "using (true)" policy exposing passport numbers, the public
+  documents bucket and year-long signed URLs, the unauthenticated /api/documents/[id] IDOR, client-sent
+  Stripe amount, unsigned webhook, the updateProfile server action (no auth, mass assignment to role),
+  dangerouslySetInnerHTML with marked output, vulnerable Next.js 14.1.0 with middleware-only /admin
+  protection, the committed .env.local with keys to rotate (masked), and the open OpenAI endpoint.
+  All 27 steps get a status. No full secret is printed.
+context:
+  scaffold_script: place-files.sh

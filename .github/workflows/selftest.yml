@@ -1,0 +1,26 @@
+name: self-test
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python: ["3.9", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Lint
+        run: python -m pip install pyflakes && python -m pyflakes scripts tests
+      - name: Self-tests (scanners, live/load/race tools, skill structure)
+        run: python tests/run_tests.py -v
